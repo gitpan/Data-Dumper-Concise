@@ -1,6 +1,6 @@
 package Devel::Dwarn;
 
-use Data::Dumper::Concise::Sugar ();
+use Data::Dumper::Concise::Sugar;
 
 sub import {
   Data::Dumper::Concise::Sugar->export_to_level(1, @_);
@@ -37,6 +37,17 @@ is equivalent to:
   my $return = some_call(...);
   warn Dumper($return);
   return $return;
+
+Another trick that is extremely useful when doing method chaining is the
+following:
+
+  my $foo = Bar->new;
+  $foo->bar->baz->Devel::Dwarn::DwarnS->biff;
+
+which is the same as:
+
+  my $foo = Bar->new;
+  (DwarnS $foo->bar->baz)->biff;
 
 =head1 SEE ALSO
 

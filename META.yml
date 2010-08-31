@@ -19,8 +19,7 @@ no_index:
     - inc
     - t
 requires:
-  Devel::ArgNames: 0.03
   perl: 5.6.0
 resources:
   license: http://dev.perl.org/licenses/
-version: 2.010
+version: 2.011

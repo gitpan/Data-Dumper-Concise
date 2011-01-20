@@ -1,3 +1,8 @@
+2.020 Jan 20 2011
+  - Add DumperObject for getting at the underlying obj
+  - create DwarnF for formatting Dumper'd output
+  - Create Ddie for die'ing output
+
 2.012 Aug 31 2010
   - Make DwarnN test still work if Devel::ArgNames isn't installed
 

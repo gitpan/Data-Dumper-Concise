@@ -45,6 +45,13 @@ DWARN_CODEREF: {
    ok eq_array($foo, ['warn','friend']), 'Dwarn passes lists through correctly';
 }
 
+DWARNF: {
+   my @foo = DwarnF { "arr: $_[0] str: $_[1]" } [qw(wut HALP)], "gnarl";
+
+   is($warned_string, qq{arr: [\n  "wut",\n  "HALP"\n]\n str: "gnarl"\n}, 'DumperF works!');
+   ok eq_array($foo[0], ['wut','HALP']) && $foo[1] eq 'gnarl', 'DwarnF passes lists through correctly';
+}
+
 DWARNN: {
    my $loaded = eval { require Devel::ArgNames; 1 };
    if ($loaded) {
@@ -57,5 +64,12 @@ DWARNN: {
       DwarnN [1];
       is $warned_string, qq{(anon) => [\n  1\n]\n}, 'DwarnN warns';
    }
+}
+
+DDIE: {
+   eval {
+      DdieS [ 'k', 'bar' ];
+   };
+   is $@, qq{[\n  "k",\n  "bar"\n]\n}, 'DwarnD dies output correctly';
 }
 
